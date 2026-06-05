@@ -1,0 +1,6 @@
+[package]
+name = "ternary-motion"
+version = "0.1.0"
+edition = "2021"
+description = "Full motion analysis for ternary {-1,0,+1} agents — position, velocity, acceleration, rhythm, phase, groove alignment"
+license = "MIT"
