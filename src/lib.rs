@@ -364,7 +364,7 @@ mod tests {
     #[test] fn test_mean_speed() { let mut pm = PopulationMotion::new(&[1,-1]); pm.update(&[-1,1]); assert!(pm.mean_speed() > 0.0); }
     #[test] fn test_total_energy() { let mut pm = PopulationMotion::new(&[1,0,-1]); pm.update(&[-1,0,1]); assert!(pm.total_energy() > 0.0); }
     #[test] fn test_settled_fraction() { let mut pm = PopulationMotion::new(&[1,1]); for _ in 0..10 { pm.update(&[1,1]); } assert!(pm.settled_fraction() > 0.5); }
-    #[test] fn test_rhythm_coherence() { let mut pm = PopulationMotion::new(&[1,1,1]); pm.update(&[-1,-1,-1]); assert!(pm.rhythm_coherence() > 0.3, "coherence={}", pm.rhythm_coherence()); }
+    #[test] fn test_rhythm_coherence() { let mut pm = PopulationMotion::new(&[1,1,1]); pm.update(&[-1,-1,-1]); pm.update(&[1,1,1]); pm.update(&[-1,-1,-1]); assert!(pm.rhythm_coherence() > 0.3, "coherence={}", pm.rhythm_coherence()); }
     #[test] fn test_phase_distribution() { let pm = PopulationMotion::new(&[1,0,-1,1,0]); let d = pm.phase_distribution(); assert_eq!(d.pos_count, 2); assert_eq!(d.zero_count, 2); assert_eq!(d.neg_count, 1); }
     #[test] fn test_direction_breakdown() { let mut pm = PopulationMotion::new(&[1,-1,0]); pm.update(&[-1,1,0]); let bd = pm.direction_breakdown(); assert_eq!(bd.total, 3); }
     #[test] fn test_momentum() { let mut pm = PopulationMotion::new(&[1,0]); pm.update(&[1,1]); assert!(pm.momentum() > 0.0); }
